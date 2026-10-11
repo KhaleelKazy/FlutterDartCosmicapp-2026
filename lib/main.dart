@@ -58,13 +58,19 @@ class MissionControl extends StatelessWidget {
           return ListTile(
             title: Text(planet.name),
             subtitle: Text(planet.type),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final result = await Navigator.push<String>(
                 context,
                 MaterialPageRoute(
                   builder: (context) => PlanetDetail(planet: planet),
                 ),
               );
+
+              if (result != null && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(result)),
+                );
+              }
             },
           );
         },
@@ -97,6 +103,15 @@ class PlanetDetail extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(planet.description),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, 'You visited ${planet.name}!');
+              },
+              child: const Text('Confirm Visit'),
+            ),
           ),
         ],
       ),
