@@ -17,3 +17,9 @@ Journal 3
 The flow of data does the await line when PlanetDetail
 to stop waiting the moment the
 the screen is popped
+
+Questions:
+I wasnt able to finish the whole project and have questions
+what does '/' mean? Is it similar to arrow functions? What exactly
+is a path parameter im guessing it has something to do with the id.
+What does context refer too?
